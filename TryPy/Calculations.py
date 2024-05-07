@@ -51,15 +51,16 @@ def ExtractCycles(dfData, ContactPosition=8, ContactForce=None, Latency=10e-3, C
     nSampsCycle = np.max(nSampsCycle)
 
     CyclesList = []
-    for ic, st in enumerate(StartIndexs[:-1]):
+    for ic, st in enumerate(StartIndexs):
         ed = st + nSampsCycle
         if ed > dfData.shape[0]:
             ed = dfData.shape[0]-1
         data = dfData[st:ed].copy()
         data.reset_index(inplace=True, drop=True)
         data.loc[:, 'Time'] = data.Time.values - data.Time[0]
-        # Calculate sign transition time
 
+
+        # Calculate sign transition time
         if CurrentTh is None:
             IndHalf = int(data.shape[0] / 2)
         else:
@@ -81,6 +82,8 @@ def ExtractCycles(dfData, ContactPosition=8, ContactForce=None, Latency=10e-3, C
                 (combined_values_reset.Current >= 0) & (combined_values_reset.Current.shift(-1) < 0)].min()
 
             combined_values_reset.index = original_index
+
+
             # Obtener el índice correcto
             hindexes = combined_values_reset.iloc[idx_reset].name
             if hindexes == 0:

@@ -1,5 +1,5 @@
-from math import ceil
 
+from math import ceil
 import numpy as np
 import pandas as pd
 import os
@@ -27,8 +27,8 @@ PlotPars = ('IMax',
 
 fig, axs = PlotScalarValues(dfData=dfData,
                             PlotPars=PlotPars,
-                            xVar='Req',
-                            hueVar='TribuId',
+                            xVar='ExpId',
+                            hueVar='Cycle',
                             PltFunt=sns.scatterplot)
 fig.suptitle('Tribu Comparison')
 fig.tight_layout()
@@ -41,7 +41,7 @@ PlotPars = ('IMax',
             'PosEnergy')
 fig, axs = PlotScalarValues(dfData=dfData,
                             PlotPars=PlotPars,
-                            xVar='Req',
+                            xVar='ExpId',
                             hueVar='Cycle',
                             PltFunt=sns.scatterplot)
 fig.suptitle('Positive peak Data')
@@ -56,7 +56,7 @@ PlotPars = ('IMin',
 
 fig, axs = PlotScalarValues(dfData=dfData,
                             PlotPars=PlotPars,
-                            xVar='Req',
+                            xVar='ExpId',
                             hueVar='Cycle',
                             PltFunt=sns.scatterplot)
 fig.suptitle('Negative peak Data')
@@ -65,20 +65,20 @@ PDF.savefig(fig)
 
 # %% compare positive and negative peaks
 
-dSel = dfData
+"""dSel = dfData
 fig, ax = plt.subplots()
 sns.lineplot(data=dSel,
-             x='Req',
+             x='ExpId',
              y='PosEnergy',
              ax=ax,
              label='PosEnergy')
 sns.lineplot(data=dSel,
-             x='Req',
+             x='ExpId',
              y='NegEnergy',
              ax=ax,
              label='NegEnergy')
 sns.lineplot(data=dSel,
-             x='Req',
+             x='ExpId',
              y='Energy',
              ax=ax,
              label='Energy')
@@ -87,7 +87,7 @@ ax.set_yscale('log')
 ax.set_xlabel('Load Resistance (Ohm)')
 ax.set_ylabel('Energy (J)')
 ax.legend()
-PDF.savefig(fig)
+PDF.savefig(fig)"""
 
 
 
